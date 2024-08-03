@@ -3,6 +3,10 @@ name = "pbcopyd"
 version = "0.1.0"
 edition = "2021"
 
+[[bin]]
+name = "pbcopyd"
+path = "src/pbcopyd.rs"
+
 [dependencies]
 axum = "0.7.5"
 clap = { version = "4.5.13", features = ["derive"] }
