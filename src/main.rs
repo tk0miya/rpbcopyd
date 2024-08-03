@@ -1,7 +1,13 @@
-use std::process::Command;
+use std::io::Write;
+use std::process::{Command, Stdio};
 
-use axum::{routing::get, Router};
+use axum::{
+    extract::Request,
+    routing::{get, post},
+    Router,
+};
 use clap::Parser;
+use futures_util::StreamExt;
 use tokio::net::TcpListener;
 
 #[derive(Parser)]
@@ -22,6 +28,18 @@ async fn pbpaste() -> Vec<u8> {
     output.unwrap().stdout
 }
 
+async fn pbcopy(request: Request) {
+    let mut stream = request.into_body().into_data_stream();
+    let pbcopy = Command::new("/usr/bin/pbcopy")
+        .stdin(Stdio::piped())
+        .spawn()
+        .unwrap();
+    let mut stdin = pbcopy.stdin.unwrap();
+    while let Some(chunk) = stream.next().await {
+        stdin.write_all(&chunk.unwrap()).unwrap();
+    }
+}
+
 #[tokio::main]
 async fn main() {
     let args = Args::parse();
@@ -30,6 +48,8 @@ async fn main() {
     let addr = [args.host, args.port.to_string()].join(":");
     let listener = TcpListener::bind(addr).await.unwrap();
 
-    let app = Router::new().route("/", get(pbpaste));
+    let app = Router::new()
+        .route("/", get(pbpaste))
+        .route("/", post(pbcopy));
     axum::serve(listener, app).await.unwrap();
 }
