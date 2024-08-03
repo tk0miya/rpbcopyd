@@ -1,4 +1,8 @@
+use std::process::Command;
+
+use axum::{routing::get, Router};
 use clap::Parser;
+use tokio::net::TcpListener;
 
 #[derive(Parser)]
 #[command(version)]
@@ -13,11 +17,19 @@ struct Args {
     port: u16,
 }
 
-fn main() {
-    let args = Args::parse();
+async fn pbpaste() -> Vec<u8> {
+    let output = Command::new("/usr/bin/pbpaste").output();
+    output.unwrap().stdout
+}
 
-    println!(
-        "daemon: {:?}, host: {:?}, port: {:?}",
-        args.daemon, args.host, args.port
-    );
+#[tokio::main]
+async fn main() {
+    let args = Args::parse();
+    println!("Listening on {}:{}", args.host, args.port);
+
+    let addr = [args.host, args.port.to_string()].join(":");
+    let listener = TcpListener::bind(addr).await.unwrap();
+
+    let app = Router::new().route("/", get(pbpaste));
+    axum::serve(listener, app).await.unwrap();
 }
