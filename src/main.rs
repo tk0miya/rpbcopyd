@@ -7,6 +7,7 @@ use axum::{
     Router,
 };
 use clap::Parser;
+use daemonize::Daemonize;
 use futures_util::StreamExt;
 use tokio::net::TcpListener;
 
@@ -41,15 +42,27 @@ async fn pbcopy(request: Request) {
 }
 
 #[tokio::main]
-async fn main() {
-    let args = Args::parse();
-    println!("Listening on {}:{}", args.host, args.port);
+async fn serve(host: String, port: u16) {
+    println!("Listening on {}:{}", host, port);
 
-    let addr = [args.host, args.port.to_string()].join(":");
+    let addr = [host, port.to_string()].join(":");
     let listener = TcpListener::bind(addr).await.unwrap();
 
     let app = Router::new()
         .route("/", get(pbpaste))
         .route("/", post(pbcopy));
     axum::serve(listener, app).await.unwrap();
+}
+
+fn main() {
+    let args = Args::parse();
+    if args.daemon {
+        let daemonize = Daemonize::new().working_directory("/");
+        match daemonize.start() {
+            Ok(_) => serve(args.host, args.port),
+            Err(e) => eprintln!("Error: {}", e),
+        }
+    } else {
+        serve(args.host, args.port)
+    }
 }
