@@ -1,5 +1,4 @@
 use clap::Parser;
-use reqwest;
 
 #[derive(Parser)]
 #[command(version)]

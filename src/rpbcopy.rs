@@ -1,7 +1,6 @@
 use std::io::{self, Read};
 
 use clap::Parser;
-use reqwest;
 
 #[derive(Parser)]
 #[command(version)]
