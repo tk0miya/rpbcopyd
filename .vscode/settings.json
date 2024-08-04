@@ -5,6 +5,7 @@
         "reqwest",
         "rpbcopy",
         "rpbcopyd",
-        "rpbpaste"
+        "rpbpaste",
+        "rustls"
     ]
 }
