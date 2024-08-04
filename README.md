@@ -11,15 +11,15 @@ Download binaries from [releases](https://github.com/tk0miya/pbcopyd/releases) a
 
 ```sh
 # Server side
-$ curl -L -o rpbcopyd https://github.com/tk0miya/pbcopyd/releases/download/v0.1/rpbcopyd-v0.1-x86_64-apple-darwin
+$ curl -L -o rpbcopyd https://github.com/tk0miya/pbcopyd/releases/download/v1.0.0/rpbcopyd-v1.0.0-x86_64-apple-darwin
 $ chmod +x rpbcopyd
 $ rpbcopyd -d
 ```
 
 ```sh
 # Client side
-$ curl -L -o rpbcopy https://github.com/tk0miya/pbcopyd/releases/download/v0.1/rpbcopy-v0.1-x86_64-apple-darwin
-$ curl -L -o rpbpaste https://github.com/tk0miya/pbcopyd/releases/download/v0.1/rpbpaste-v0.1-x86_64-apple-darwin
+$ curl -L -o rpbcopy https://github.com/tk0miya/pbcopyd/releases/download/v1.0.0/rpbcopy-v1.0.0-x86_64-apple-darwin
+$ curl -L -o rpbpaste https://github.com/tk0miya/pbcopyd/releases/download/v1.0.0/rpbpaste-v1.0.0-x86_64-apple-darwin
 $ chmod +x rpbcopy rpbpaste
 $ echo "Hello, world!" | rpbcopy
 $ rpbpaste
