@@ -7,9 +7,14 @@ edition = "2021"
 name = "pbcopyd"
 path = "src/pbcopyd.rs"
 
+[[bin]]
+name = "rpbpaste"
+path = "src/rpbpaste.rs"
+
 [dependencies]
 axum = "0.7.5"
 clap = { version = "4.5.13", features = ["derive"] }
 daemonize = "0.5.0"
 futures-util = "0.3.30"
+reqwest = "0.12.5"
 tokio = { version = "1.39.2", features = ["full"] }
