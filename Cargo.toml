@@ -8,6 +8,10 @@ name = "pbcopyd"
 path = "src/pbcopyd.rs"
 
 [[bin]]
+name = "rpbcopy"
+path = "src/rpbcopy.rs"
+
+[[bin]]
 name = "rpbpaste"
 path = "src/rpbpaste.rs"
 

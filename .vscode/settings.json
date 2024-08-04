@@ -1,7 +1,8 @@
 {
     "cSpell.words": [
         "pbcopy",
-        "rpbpaste",
-        "reqwest"
+        "reqwest",
+        "rpbcopy",
+        "rpbpaste"
     ]
 }
