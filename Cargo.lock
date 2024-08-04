@@ -773,18 +773,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "pbcopyd"
-version = "0.1.0"
-dependencies = [
- "axum",
- "clap",
- "daemonize",
- "futures-util",
- "reqwest",
- "tokio",
-]
-
-[[package]]
 name = "percent-encoding"
 version = "2.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -911,6 +899,18 @@ dependencies = [
  "spin",
  "untrusted",
  "windows-sys 0.52.0",
+]
+
+[[package]]
+name = "rpbcopyd"
+version = "0.1.0"
+dependencies = [
+ "axum",
+ "clap",
+ "daemonize",
+ "futures-util",
+ "reqwest",
+ "tokio",
 ]
 
 [[package]]

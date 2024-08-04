@@ -1,11 +1,11 @@
 [package]
-name = "pbcopyd"
+name = "rpbcopyd"
 version = "0.1.0"
 edition = "2021"
 
 [[bin]]
-name = "pbcopyd"
-path = "src/pbcopyd.rs"
+name = "rpbcopyd"
+path = "src/rpbcopyd.rs"
 
 [[bin]]
 name = "rpbcopy"
