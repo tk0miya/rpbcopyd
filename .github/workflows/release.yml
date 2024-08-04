@@ -35,6 +35,7 @@ jobs:
       - uses: Swatinem/rust-cache@v2
       - name: Build (Linux)
         run: |
+          cargo install cross
           cross build --target ${{ matrix.target }} --release --all-features --verbose
         if: startsWith(matrix.os, 'ubuntu')
       - name: build (macOS)
