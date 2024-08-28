@@ -20,5 +20,5 @@ axum = "0.7.5"
 clap = { version = "4.5.16", features = ["derive"] }
 daemonize = "0.5.0"
 futures-util = "0.3.30"
-reqwest = { version = "0.12.5", default-features = false, features = ["rustls-tls"] }
+reqwest = { version = "0.12.7", default-features = false, features = ["rustls-tls"] }
 tokio = { version = "1.39.3", features = ["full"] }
