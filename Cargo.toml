@@ -17,7 +17,7 @@ path = "src/rpbpaste.rs"
 
 [dependencies]
 axum = "0.7.5"
-clap = { version = "4.5.16", features = ["derive"] }
+clap = { version = "4.5.17", features = ["derive"] }
 daemonize = "0.5.0"
 futures-util = "0.3.30"
 reqwest = { version = "0.12.7", default-features = false, features = ["rustls-tls"] }
