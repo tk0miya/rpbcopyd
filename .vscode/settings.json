@@ -6,6 +6,7 @@
         "rpbcopy",
         "rpbcopyd",
         "rpbpaste",
-        "rustls"
+        "rustls",
+        "tk0miya"
     ]
 }
