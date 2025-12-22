@@ -16,7 +16,7 @@ name = "rpbpaste"
 path = "src/rpbpaste.rs"
 
 [dependencies]
-axum = "0.8.7"
+axum = "0.8.8"
 clap = { version = "4.5.53", features = ["derive"] }
 daemonize = "0.5.0"
 futures-util = "0.3.31"
