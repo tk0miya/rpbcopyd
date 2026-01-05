@@ -21,4 +21,4 @@ clap = { version = "4.5.53", features = ["derive"] }
 daemonize = "0.5.0"
 futures-util = "0.3.31"
 reqwest = { version = "0.12.28", default-features = false, features = ["rustls-tls"] }
-tokio = { version = "1.48.0", features = ["full"] }
+tokio = { version = "1.49.0", features = ["full"] }
