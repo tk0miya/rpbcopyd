@@ -19,6 +19,6 @@ path = "src/rpbpaste.rs"
 axum = "0.8.8"
 clap = { version = "4.5.57", features = ["derive"] }
 daemonize = "0.5.0"
-futures-util = "0.3.31"
+futures-util = "0.3.32"
 reqwest = { version = "0.12.28", default-features = false, features = ["rustls-tls"] }
 tokio = { version = "1.49.0", features = ["full"] }
