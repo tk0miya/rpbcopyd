@@ -34,7 +34,11 @@ jobs:
         uses: actions-rust-lang/setup-rust-toolchain@46268bd060767258de96ed93c1251119784f2ab6 # v1.16.1
         with:
           components: rustfmt
-      - uses: Swatinem/rust-cache@e18b497796c12c097a38f9edb9d0641fb99eee32 # v2
+          # Skip Rust cache to avoid the cache-poisoning attack at release time:
+          # a poisoned cache written from a PR could otherwise be reused here
+          # and end up shipped as a GitHub Release artifact.
+          # See https://docs.zizmor.sh/audits/#cache-poisoning
+          cache: false
       - name: Build (Linux)
         run: |
           cargo install cross
