@@ -59,10 +59,16 @@ jobs:
           mv "target/${TARGET}/release/rpbcopy" "target/${TARGET}/release/rpbcopy-${REF_NAME}-${TARGET}"
           mv "target/${TARGET}/release/rpbpaste" "target/${TARGET}/release/rpbpaste-${REF_NAME}-${TARGET}"
       - name: Release
-        uses: softprops/action-gh-release@b4309332981a82ec1c5618f44dd2e27cc8bfbfda # v3
-        with:
-          name: rpbcopyd-${{ matrix.target }}
-          files: |
-            target/${{ matrix.target }}/release/rpbcopyd-${{ github.ref_name }}-${{ matrix.target }}
-            target/${{ matrix.target }}/release/rpbcopy-${{ github.ref_name }}-${{ matrix.target }}
-            target/${{ matrix.target }}/release/rpbpaste-${{ github.ref_name }}-${{ matrix.target }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REF_NAME: ${{ github.ref_name }}
+          TARGET: ${{ matrix.target }}
+        run: |
+          # Create the release if this matrix entry is the first to reach this step;
+          # otherwise reuse the existing release created by a sibling matrix entry.
+          gh release create "$REF_NAME" --title "$REF_NAME" --generate-notes 2>/dev/null || true
+          gh release upload "$REF_NAME" \
+            "target/${TARGET}/release/rpbcopyd-${REF_NAME}-${TARGET}" \
+            "target/${TARGET}/release/rpbcopy-${REF_NAME}-${TARGET}" \
+            "target/${TARGET}/release/rpbpaste-${REF_NAME}-${TARGET}" \
+            --clobber
